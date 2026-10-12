@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+           xsi:type="TaskPaneApp">
+  <Id>b01e1d79-81a3-4162-9c0a-c80fa9b1203b</Id>
+  <Version>1.0.1.0</Version>
+  <ProviderName>CCiteheck</ProviderName>
+  <DefaultLocale>zh-CN</DefaultLocale>
+  <DisplayName DefaultValue="CCiteheck 法律引用核查（公网测试版）"/>
+  <Description DefaultValue="通过 CCiteheck 公网服务在 Word 中进行法规溯源与语义核查。"/>
+  <IconUrl DefaultValue="https://cciteheck-api.onrender.com/assets/icon-32.png?v=2"/>
+  <HighResolutionIconUrl DefaultValue="https://cciteheck-api.onrender.com/assets/icon-80.png?v=2"/>
+  <SupportUrl DefaultValue="https://cciteheck-api.onrender.com/help.html"/>
+  <AppDomains>
+    <AppDomain>https://cciteheck-api.onrender.com</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="WordApi" MinVersion="1.4"/>
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://cciteheck-api.onrender.com/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+                    xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.1">
+        <bt:Set Name="WordApi"/>
+      </bt:Sets>
+    </Requirements>
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <FunctionFile resid="Commands.Url"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="CCiteheck.Group">
+                <Label resid="Group.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16"/>
+                  <bt:Image size="32" resid="Icon.32"/>
+                  <bt:Image size="80" resid="Icon.80"/>
+                </Icon>
+                <Control xsi:type="Button" id="CCiteheck.OpenTaskpane">
+                  <Label resid="Button.Label"/>
+                  <Supertip>
+                    <Title resid="Button.Label"/>
+                    <Description resid="Button.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16"/>
+                    <bt:Image size="32" resid="Icon.32"/>
+                    <bt:Image size="80" resid="Icon.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>Office.AutoShowTaskpaneWithDocument</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16" DefaultValue="https://cciteheck-api.onrender.com/assets/icon-16.png?v=2"/>
+        <bt:Image id="Icon.32" DefaultValue="https://cciteheck-api.onrender.com/assets/icon-32.png?v=2"/>
+        <bt:Image id="Icon.80" DefaultValue="https://cciteheck-api.onrender.com/assets/icon-80.png?v=2"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Commands.Url" DefaultValue="https://cciteheck-api.onrender.com/taskpane.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://cciteheck-api.onrender.com/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Group.Label" DefaultValue="CCiteheck"/>
+        <bt:String id="Button.Label" DefaultValue="CCiteheck"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="Button.Tooltip" DefaultValue="通过公网服务对当前 Word 文档执行法律引用核查"/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>安装 CCiteheck · Word 法律引用核查</title>
+  <link rel="stylesheet" href="/install/install.css">
+</head>
+<body>
+  <main class="install-shell">
+    <header class="install-hero">
+      <h1>CCiteheck 法律引用核查</h1>
+      <p class="install-lead">在 Word 里一键核查法规与司法案例引用:定位条文、比对权威原文、给出修订建议。按你的系统选择安装方式,约 3 分钟完成。</p>
+    </header>
+
+    <div class="platform-switch" role="tablist" aria-label="选择操作系统">
+      <button id="tab-mac" class="platform-tab" type="button" role="tab">macOS</button>
+      <button id="tab-windows" class="platform-tab" type="button" role="tab">Windows</button>
+    </div>
+
+    <section id="panel-mac" class="platform-panel" role="tabpanel" aria-labelledby="tab-mac">
+      <a class="primary-button" href="/manifest.xml" download>下载 manifest.xml</a>
+      <ol class="steps">
+        <li><strong>完全退出 Word</strong>(按 Cmd+Q,不只是关闭窗口)。</li>
+        <li>在 Finder 中按 <strong>Cmd+Shift+G</strong>,粘贴 <code>~/Library/Containers/com.microsoft.Word/Data/Documents/wef/</code> 并回车,把刚下载的 manifest.xml 复制进该文件夹。
+          <details class="alt-method">
+            <summary>提示"找不到该文件夹"?</summary>
+            <p>该文件夹通常在 Word 首次打开后才创建:先正常打开一次 Word(再 Cmd+Q 退出),重试上面的路径。若还是没有,在打开的 Finder 窗口里<strong>新建一个名为 wef 的文件夹</strong>,再复制进去。</p>
+            <p>App Store 版 Word 可能不支持旁加载;公司托管的 Mac 若提示"没有权限",请联系管理员或用个人电脑安装。</p>
+          </details>
+        </li>
+        <li>重新打开 Word,在 <strong>主页 → 加载项</strong> 中找到 CCiteheck 并点击启动。</li>
+      </ol>
+      <details class="alt-method">
+        <summary>熟悉终端?一键安装器更快</summary>
+        <p>下载 <a href="/install/install-ccitecheck.command" download>install-ccitecheck.command</a>,退出 Word 后双击运行。</p>
+        <p>首次运行如提示"无法验证开发者":右键该文件并选择"打开"。如提示"权限不足":打开"终端"App,输入 <code>chmod +x </code>(注意 x 后有一个空格),把该文件拖进终端窗口再按回车,之后双击即可运行。</p>
+      </details>
+    </section>
+
+    <section id="panel-windows" class="platform-panel" role="tabpanel" aria-labelledby="tab-windows" hidden>
+      <a class="primary-button" href="/manifest.xml" download>下载 manifest.xml</a>
+      <ol class="steps">
+        <li>打开 Word(2016 或更新版本 / Microsoft 365;不支持 WPS),进入 <strong>插入 → 获取加载项</strong>。
+          <p class="step-note">找不到"获取加载项"?部分版本的入口是 <strong>主页 → 加载项 → 更多加载项</strong>(或"高级"),打开的是同一个窗口;注意不是"文件 → 选项 → 加载项"。</p>
+        </li>
+        <li>在弹出窗口顶部选择 <strong>我的加载项</strong> 选项卡,看该页<strong>最上方</strong>:<strong>上传我的加载项</strong>是"查看全部"旁边的小字链接,<strong>不是按钮</strong>(英文版叫 "Upload My Add-in";部分版本需先点"管理我的加载项"才能看到它)。</li>
+        <li>在文件选择框中选中刚下载的 <code>manifest.xml</code>,点 <strong>打开</strong> 并确认提示。CCiteheck 即出现在 <strong>主页 → 加载项</strong> 中,点击即可启动。
+          <p class="step-note">选择框里只能选本地文件,不能直接粘贴网址;若下载被浏览器拦截,在浏览器地址栏打开 <code>https://cciteheck-api.onrender.com/manifest.xml</code> 后另存为 manifest.xml。</p>
+        </li>
+      </ol>
+      <details class="alt-method">
+        <summary>看不到"上传我的加载项"?按顺序排查</summary>
+        <p>1. 它是<strong>文字链接</strong>,只在"我的加载项"选项卡<strong>顶部</strong>出现;不在"主页"选项卡里,也不是按钮。</p>
+        <p>2. 点 Word <strong>右上角登录</strong>任意 Microsoft 账户(个人或工作/学校账户均可),未登录时该链接可能隐藏。</p>
+        <p>3. 把 Office 更新到最新:<strong>文件 → 帐户 → 更新选项 → 立即更新</strong>,装完重启 Word。</p>
+        <p>4. 公司/学校账户可能被管理员禁用旁加载,入口会被隐藏。可换个人账户登录,或把 <code>https://cciteheck-api.onrender.com/manifest.xml</code> 发给管理员集中部署。</p>
+        <p>5. 都没有解决?改用下面的一键安装器。</p>
+      </details>
+      <details class="alt-method">
+        <summary>还是不行?下载 Windows 一键安装器</summary>
+        <p>同时下载 <a href="/install/install-ccitecheck.bat" download>install-ccitecheck.bat</a> 和 <a href="/install/install-ccitecheck.ps1" download>install-ccitecheck.ps1</a> 到<strong>同一个文件夹</strong>(.bat 依赖同目录下的 .ps1),完全退出 Word 后双击 .bat,允许管理员权限,窗口显示完成后打开 Word。</p>
+        <p>然后在 <strong>开始 → 加载项 → 高级 → 共享文件夹</strong> 中选中 CCitecheck,点 <strong>添加</strong>。安装器被公司策略拦截时,可改用手动方式:新建文件夹(如 <code>C:\CCiteheck</code>)放入 manifest.xml 并共享,在 Word 的 <strong>文件 → 选项 → 信任中心 → 信任中心设置 → 受信任的加载项目录</strong> 中添加该共享路径,勾选"在菜单中显示",重启 Word 后到"共享文件夹"中添加。</p>
+      </details>
+    </section>
+
+    <footer class="install-footer">
+      <p>安装后在 Word 中打开任意文档,点击“核查全文”即可。核查时文档内容会上传至部署方服务器处理,请勿核查含敏感个人信息的文书。</p>
+      <p><a href="/help.html">功能介绍与结果解读</a> · 首次连接如超时请稍候重试。</p>
+    </footer>
+  </main>
+  <script src="/install/install.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "correction_evidence": {
+        "article_no": "第二条",
+        "article_text": "处理个人信息应当遵循合法正当必要和诚信原则",
+        "data_source": {
+          "fetched_at": "<timestamp>",
+          "message": "",
+          "metadata": {
+            "full_text_complete": false,
+            "local_article_count": 2,
+            "version_confirmed": true,
+            "version_key": "2024-01-01"
+          },
+          "source_name": "本地法规库",
+          "source_url": "https://example.test/law",
+          "status": "article_found",
+          "tier": "local_sqlite"
+        },
+        "effective_from": null,
+        "effective_to": null,
+        "law_title": "示例法",
+        "related_articles": [],
+        "source_metadata": {
+          "article_rank_confirmed": true,
+          "relevance_score": 6.834212,
+          "version_key": "2024-01-01"
+        },
+        "source_type": null,
+        "structure_path": null,
+        "version_label": null,
+        "version_status": null
+      },
+      "location_resolution": {
+        "candidates": [
+          {
+            "confirmed_level": "article",
+            "coverage": 1.0,
+            "evidence_spans": [
+              [
+                0,
+                21
+              ]
+            ],
+            "locator": {
+              "article_no": "第二条",
+              "item_no": null,
+              "paragraph_no": null
+            },
+            "source_url": "https://example.test/law",
+            "supported": true,
+            "text": "处理个人信息应当遵循合法正当必要和诚信原则"
+          }
+        ],
+        "source_trace": null,
+        "status": "resolved"
+      },
+      "repair_verified": true
+    }
+  ],
+  "resolutions": {
+    "0": {
+      "candidates": [
+        {
+          "confirmed_level": "article",
+          "coverage": 1.0,
+          "evidence_spans": [
+            [
+              0,
+              21
+            ]
+          ],
+          "locator": {
+            "article_no": "第二条",
+            "item_no": null,
+            "paragraph_no": null
+          },
+          "source_url": "https://example.test/law",
+          "supported": true,
+          "text": "处理个人信息应当遵循合法正当必要和诚信原则"
+        }
+      ],
+      "source_trace": null,
+      "status": "resolved"
+    }
+  }
+}

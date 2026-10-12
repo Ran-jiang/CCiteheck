@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccitecheck"
+version = "0.1.0"
+description = "法律文书引用识别、溯源与核查核心"
+requires-python = ">=3.12"
+dependencies = [
+  "certifi>=2024.0.0",
+  "fastapi>=0.115.0",
+  "httpx>=0.27.0",
+  "jieba>=0.42.1",
+  "pydantic>=2.0.0",
+  "python-docx>=1.1.0",
+  "uvicorn>=0.30.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ccitecheck*"]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src"]
+testpaths = ["tests"]

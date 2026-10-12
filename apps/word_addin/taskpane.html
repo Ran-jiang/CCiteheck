@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://appsforoffice.microsoft.com; script-src 'self' https://appsforoffice.microsoft.com; style-src 'self'; connect-src 'self'; img-src 'self' data:;">
+  <title>CCiteheck</title>
+  <link rel="stylesheet" href="/assets/taskpane.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <button id="brand-button" class="brand" type="button" aria-label="返回主页" title="返回主页">
+        <svg class="brand-back" viewBox="0 0 20 20" aria-hidden="true"><path d="M11.75 5.25 7 10l4.75 4.75M7.5 10h6.25"/></svg>
+        <span>CCiteheck</span>
+      </button>
+      <div class="header-actions">
+        <button id="help-button" class="icon-button" type="button" aria-label="项目简介与功能介绍" title="项目简介与功能介绍">?</button>
+      </div>
+    </header>
+
+    <section id="home-screen" class="screen home-screen" aria-labelledby="home-title">
+      <div class="hero" aria-hidden="true">CCiteheck</div>
+      <h1 id="home-title" class="sr-only">CCiteheck 可验证主张核查</h1>
+      <p class="hero-caption">可验证主张核查</p>
+
+      <section class="current-document" aria-labelledby="current-document-title">
+        <div class="section-label" id="current-document-title">当前文档</div>
+        <div class="document-row">
+          <div class="document-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM14 3v5h5"/></svg>
+          </div>
+          <div class="document-copy">
+            <div id="document-name" class="document-name">正在读取 Word 文档…</div>
+            <div id="document-status" class="document-status">正在连接插件</div>
+          </div>
+          <span id="connection-dot" class="connection-dot" aria-label="连接状态"></span>
+        </div>
+      </section>
+
+      <section class="scope-section" aria-labelledby="scope-title">
+        <div class="section-label" id="scope-title">核查范围</div>
+        <div class="card scope-card">
+          <label class="scope-row" for="statute-toggle">
+            <div class="scope-copy">
+              <strong>法律法规引用</strong>
+            </div>
+            <input id="statute-toggle" class="toggle" type="checkbox" checked>
+          </label>
+          <label class="scope-row" for="case-toggle">
+            <div class="scope-copy">
+              <strong>司法案例引用</strong>
+            </div>
+            <input id="case-toggle" class="toggle" type="checkbox" checked>
+          </label>
+          <label class="scope-row" for="model-select">
+            <div class="scope-copy">
+              <strong>语义核查模型</strong>
+            </div>
+            <select id="model-select" class="model-select"></select>
+          </label>
+        </div>
+      </section>
+
+      <section id="history-section" class="history-section is-hidden" aria-labelledby="history-title">
+        <div class="section-label" id="history-title">最近核查</div>
+        <div id="history-list" class="card history-list"></div>
+      </section>
+
+      <div class="bottom-action">
+        <button id="start-button" class="primary-button" type="button" disabled>核查全文</button>
+        <button id="selection-button" class="secondary-button" type="button" disabled>核查选中内容</button>
+      </div>
+    </section>
+
+    <section id="progress-screen" class="screen progress-screen is-hidden" aria-labelledby="progress-title">
+      <div class="progress-orbit" aria-hidden="true">
+        <span class="orbit-ring"></span>
+        <span class="orbit-track"><span class="orbit-dot"></span></span>
+      </div>
+      <h1 id="progress-title">正在核查法律引用</h1>
+      <p id="progress-subtitle" class="progress-subtitle">请保持当前文档打开</p>
+      <ol class="progress-list">
+        <li id="stage-read" class="progress-stage is-active">
+          <span class="stage-marker"></span>
+          <div><strong>文档结构解析</strong><small>正在获取完整 DOCX</small></div>
+        </li>
+        <li id="stage-submit" class="progress-stage">
+          <span class="stage-marker"></span>
+          <div><strong>提交核验任务</strong><small>等待执行</small></div>
+        </li>
+        <li id="stage-check" class="progress-stage">
+          <span class="stage-marker"></span>
+          <div><strong>规章条款与语义核验</strong><small>等待执行</small></div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="results-screen" class="screen results-screen is-hidden" aria-labelledby="results-title">
+      <div class="results-heading">
+        <div class="results-title-row">
+          <h1 id="results-title">核查结果</h1>
+          <button id="rerun-button" class="text-button" type="button">重新核查</button>
+        </div>
+        <p id="results-stats" class="results-stats"></p>
+        <p id="results-subtitle" class="results-subtitle"></p>
+      </div>
+      <div id="status-filter" class="status-filter" role="group" aria-label="按核查状态筛选"></div>
+      <div id="results-list" class="results-list"></div>
+    </section>
+
+    <section id="help-screen" class="screen help-screen is-hidden" aria-labelledby="help-title">
+      <p class="eyebrow">产品简介</p>
+      <h1 id="help-title">让法律引用核查更清楚</h1>
+      <p class="help-lead">CCiteheck 识别 Word 文档中的法规与司法案例引用，连接权威来源完成定位、比对，并给出可审阅的修订建议。</p>
+      <div class="help-divider"></div>
+      <section class="help-section" aria-labelledby="help-capability-title">
+        <h2 id="help-capability-title">可以核查什么</h2>
+        <dl class="capability-list">
+          <div><dt>法规引用</dt><dd>核查法源、条款项定位、历史版本与权威文本原意。</dd></div>
+          <div><dt>案例引用</dt><dd>核查案例身份、引用信息与所述观点是否忠实于裁判说理。</dd></div>
+          <div><dt>修订建议</dt><dd>安全条件满足时，可将建议以修订模式写回 Word。</dd></div>
+          <div><dt>核查基准</dt><dd>比对以法规现行有效版本为准；如文书引用的是行为时的历史版本，请自行核对当时文本。</dd></div>
+        </dl>
+      </section>
+      <section class="help-section" aria-labelledby="help-status-title">
+        <h2 id="help-status-title">结果如何理解</h2>
+        <ul class="status-guide">
+          <li><span class="status-swatch is-pass"></span><div><strong>通过</strong><p>引用与权威来源一致。</p></div></li>
+          <li><span class="status-swatch is-issue"></span><div><strong>未通过</strong><p>发现明确问题，请查看建议。</p></div></li>
+          <li><span class="status-swatch is-review"></span><div><strong>待核实</strong><p>法律适用问题或技术原因未完成核查，需要人工确认或重试。</p></div></li>
+        </ul>
+      </section>
+    </section>
+
+    <div id="message" class="message is-hidden" role="alert"></div>
+  </main>
+  <script type="module" src="/assets/taskpane.js"></script>
+</body>
+</html>

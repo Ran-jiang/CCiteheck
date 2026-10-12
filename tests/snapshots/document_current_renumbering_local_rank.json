@@ -1,0 +1,168 @@
+[
+  {
+    "application_check": null,
+    "card_id": "card_00001",
+    "check_id": "vc_00001",
+    "cited_locators": [
+      {
+        "article_no": "第42条",
+        "item_no": null,
+        "paragraph_no": null
+      }
+    ],
+    "claim_id": "cl_snapshot",
+    "claim_text": "《示例法》第42条规定，行政机关作出责令停产停业、吊销许可证或者执照、较大数额罚款等行政处罚决定之前，应当告知当事人有要求举行听证的权利。",
+    "correction_evidence": {
+      "article_no": "第63条",
+      "article_text": "行政机关拟作出较大数额罚款、吊销许可证件、责令停产停业等行政处罚决定，应当告知当事人有要求听证的权利。",
+      "data_source": {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 4,
+          "version_confirmed": true,
+          "version_key": "2024-01-01"
+        },
+        "source_name": "本地法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      },
+      "effective_from": null,
+      "effective_to": null,
+      "law_title": "示例法",
+      "related_articles": [],
+      "source_metadata": {
+        "article_rank_confirmed": true,
+        "relevance_score": 15.489173,
+        "version_key": "2024-01-01"
+      },
+      "source_type": null,
+      "structure_path": null,
+      "version_label": null,
+      "version_status": null
+    },
+    "display_group_id": "dg_3ea6cb333875",
+    "evidence": {
+      "article_no": "第42条",
+      "article_text": "行政处罚应当由具有行政执法资格的执法人员实施。",
+      "data_source": {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 4,
+          "version_confirmed": true,
+          "version_key": "2024-01-01"
+        },
+        "source_name": "CCiteheck 本地 SQLite 法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      },
+      "effective_from": null,
+      "effective_to": null,
+      "law_title": "示例法",
+      "related_articles": [],
+      "source_metadata": {
+        "effective_at": null,
+        "effective_from": null,
+        "effective_to": null,
+        "effectiveness": null,
+        "issued_at": null,
+        "timeliness": null,
+        "version_key": "2024-01-01"
+      },
+      "source_type": "other_normative_document",
+      "structure_path": null,
+      "version_label": null,
+      "version_status": "has_articles"
+    },
+    "findings": [
+      {
+        "cited_locator": {
+          "article_no": "第42条",
+          "item_no": null,
+          "paragraph_no": null
+        },
+        "code": "article_number_error",
+        "historical_version": null,
+        "resolved_locator": {
+          "article_no": "第63条",
+          "item_no": null,
+          "paragraph_no": null
+        },
+        "revision": {
+          "machine_applicable": true,
+          "original_text": "《示例法》第42条规定，行政机关作出责令停产停业、吊销许可证或者执照、较大数额罚款等行政处罚决定之前，应当告知当事人有要求举行听证的权利。",
+          "preconditions": [
+            "original_text_unique",
+            "document_unchanged",
+            "candidate_deterministically_verified"
+          ],
+          "rationale": "将错误引用位置更正为第63条",
+          "revised_text": "《示例法》第63条规定，行政机关作出责令停产停业、吊销许可证或者执照、较大数额罚款等行政处罚决定之前，应当告知当事人有要求举行听证的权利。",
+          "strategy": "replace_exact_text"
+        },
+        "risk_level": "HIGH",
+        "suggestion": "条号引用错误，应为《示例法》第63条。",
+        "summary": "引文内容对应第63条"
+      }
+    ],
+    "jurisdiction": "CN",
+    "law_identity_resolved": true,
+    "law_identity_resolver": "direct",
+    "law_title": "示例法",
+    "location_resolution": {
+      "candidates": [
+        {
+          "confirmed_level": "article",
+          "coverage": 0.6415094339622641,
+          "evidence_spans": [
+            [
+              0,
+              51
+            ]
+          ],
+          "locator": {
+            "article_no": "第63条",
+            "item_no": null,
+            "paragraph_no": null
+          },
+          "source_url": "https://example.test/law",
+          "supported": false,
+          "text": "行政机关拟作出较大数额罚款、吊销许可证件、责令停产停业等行政处罚决定，应当告知当事人有要求听证的权利。"
+        }
+      ],
+      "source_trace": null,
+      "status": "resolved"
+    },
+    "lookup_status": "article_found",
+    "message": "",
+    "note_context": null,
+    "outcome": "issue",
+    "parent_check_id": null,
+    "recognition_form": "explicit",
+    "reference_role": "direct",
+    "relation_message": "",
+    "relation_status": null,
+    "source_attempts": [
+      {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 4,
+          "version_confirmed": true,
+          "version_key": "2024-01-01"
+        },
+        "source_name": "CCiteheck 本地 SQLite 法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      }
+    ],
+    "source_locations": []
+  }
+]

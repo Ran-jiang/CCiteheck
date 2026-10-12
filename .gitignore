@@ -1,0 +1,36 @@
+# 环境变量（含 API 密钥）
+.env*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+node_modules/
+
+# pytest
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+reports/
+debug_runs/
+data/pkulaw_cache.sqlite
+data/ansvar_cache.sqlite
+data/laws.sqlite.backup-*
+.claude/
+
+# 私有 Debug 前端（独立仓库 Ran-jiang/ccitecheck-debug）
+apps/debug_recognition/
+
+# 打包与发布
+secrets/
+dist/
+tools/package/cache/

@@ -1,0 +1,168 @@
+[
+  {
+    "application_check": null,
+    "card_id": "card_00001",
+    "check_id": "vc_00001",
+    "cited_locators": [
+      {
+        "article_no": "第一条",
+        "item_no": null,
+        "paragraph_no": null
+      }
+    ],
+    "claim_id": "cl_snapshot",
+    "claim_text": "《示例法》第一条规定处理个人信息应当遵循合法正当必要和诚信原则。",
+    "correction_evidence": {
+      "article_no": "第二条",
+      "article_text": "处理个人信息应当遵循合法正当必要和诚信原则",
+      "data_source": {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 2,
+          "version_confirmed": true,
+          "version_key": "current"
+        },
+        "source_name": "本地法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      },
+      "effective_from": null,
+      "effective_to": null,
+      "law_title": "示例法",
+      "related_articles": [],
+      "source_metadata": {
+        "article_rank_confirmed": true,
+        "relevance_score": 6.834212,
+        "version_key": "current"
+      },
+      "source_type": null,
+      "structure_path": null,
+      "version_label": null,
+      "version_status": null
+    },
+    "display_group_id": "dg_3ea6cb333875",
+    "evidence": {
+      "article_no": "第一条",
+      "article_text": "当事人应当按照约定全面履行自己的义务",
+      "data_source": {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 2,
+          "version_confirmed": true,
+          "version_key": "current"
+        },
+        "source_name": "CCiteheck 本地 SQLite 法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      },
+      "effective_from": null,
+      "effective_to": null,
+      "law_title": "示例法",
+      "related_articles": [],
+      "source_metadata": {
+        "effective_at": null,
+        "effective_from": null,
+        "effective_to": null,
+        "effectiveness": null,
+        "issued_at": null,
+        "timeliness": null,
+        "version_key": "current"
+      },
+      "source_type": "other_normative_document",
+      "structure_path": null,
+      "version_label": null,
+      "version_status": "has_articles"
+    },
+    "findings": [
+      {
+        "cited_locator": {
+          "article_no": "第一条",
+          "item_no": null,
+          "paragraph_no": null
+        },
+        "code": "article_number_error",
+        "historical_version": null,
+        "resolved_locator": {
+          "article_no": "第二条",
+          "item_no": null,
+          "paragraph_no": null
+        },
+        "revision": {
+          "machine_applicable": true,
+          "original_text": "《示例法》第一条规定处理个人信息应当遵循合法正当必要和诚信原则。",
+          "preconditions": [
+            "original_text_unique",
+            "document_unchanged",
+            "candidate_deterministically_verified"
+          ],
+          "rationale": "将错误引用位置更正为第二条",
+          "revised_text": "《示例法》第二条规定处理个人信息应当遵循合法正当必要和诚信原则。",
+          "strategy": "replace_exact_text"
+        },
+        "risk_level": "HIGH",
+        "suggestion": "条号引用错误，应为《示例法》第二条。",
+        "summary": "引文内容对应第二条"
+      }
+    ],
+    "jurisdiction": "CN",
+    "law_identity_resolved": true,
+    "law_identity_resolver": "direct",
+    "law_title": "示例法",
+    "location_resolution": {
+      "candidates": [
+        {
+          "confirmed_level": "article",
+          "coverage": 1.0,
+          "evidence_spans": [
+            [
+              0,
+              21
+            ]
+          ],
+          "locator": {
+            "article_no": "第二条",
+            "item_no": null,
+            "paragraph_no": null
+          },
+          "source_url": "https://example.test/law",
+          "supported": true,
+          "text": "处理个人信息应当遵循合法正当必要和诚信原则"
+        }
+      ],
+      "source_trace": null,
+      "status": "resolved"
+    },
+    "lookup_status": "article_found",
+    "message": "",
+    "note_context": null,
+    "outcome": "issue",
+    "parent_check_id": null,
+    "recognition_form": "explicit",
+    "reference_role": "direct",
+    "relation_message": "",
+    "relation_status": null,
+    "source_attempts": [
+      {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 2,
+          "version_confirmed": true,
+          "version_key": "current"
+        },
+        "source_name": "CCiteheck 本地 SQLite 法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      }
+    ],
+    "source_locations": []
+  }
+]

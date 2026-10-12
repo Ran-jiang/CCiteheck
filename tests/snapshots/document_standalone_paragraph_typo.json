@@ -1,0 +1,167 @@
+[
+  {
+    "application_check": null,
+    "card_id": "card_00001",
+    "check_id": "vc_00001",
+    "cited_locators": [
+      {
+        "article_no": "第100条",
+        "item_no": null,
+        "paragraph_no": null
+      }
+    ],
+    "claim_id": "cl_snapshot",
+    "claim_text": "《示例法》第100款规定，非法人组织可以确定一人或者数人代表该组织从事民事活动。",
+    "correction_evidence": {
+      "article_no": "第105条",
+      "article_text": "非法人组织可以确定一人或者数人代表该组织从事民事活动。",
+      "data_source": {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 2,
+          "version_confirmed": true,
+          "version_key": "2024-01-01"
+        },
+        "source_name": "本地法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      },
+      "effective_from": null,
+      "effective_to": null,
+      "law_title": "示例法",
+      "related_articles": [],
+      "source_metadata": {
+        "article_rank_confirmed": false,
+        "relevance_score": 8.910184,
+        "version_key": "2024-01-01"
+      },
+      "source_type": null,
+      "structure_path": null,
+      "version_label": null,
+      "version_status": null
+    },
+    "display_group_id": "dg_3ea6cb333875",
+    "evidence": {
+      "article_no": "第100条",
+      "article_text": "当事人应当按照约定全面履行自己的义务",
+      "data_source": {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 2,
+          "version_confirmed": true,
+          "version_key": "2024-01-01"
+        },
+        "source_name": "CCiteheck 本地 SQLite 法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      },
+      "effective_from": null,
+      "effective_to": null,
+      "law_title": "示例法",
+      "related_articles": [],
+      "source_metadata": {
+        "effective_at": null,
+        "effective_from": null,
+        "effective_to": null,
+        "effectiveness": null,
+        "issued_at": null,
+        "timeliness": null,
+        "version_key": "2024-01-01"
+      },
+      "source_type": "other_normative_document",
+      "structure_path": null,
+      "version_label": null,
+      "version_status": "has_articles"
+    },
+    "findings": [
+      {
+        "cited_locator": null,
+        "code": "format_error",
+        "historical_version": null,
+        "resolved_locator": null,
+        "revision": null,
+        "risk_level": "HIGH",
+        "suggestion": "款号不能脱离条号单独引用；请改为正确的第X条，并按需补充第Y款。",
+        "summary": "第100款缺少所属条号"
+      },
+      {
+        "cited_locator": {
+          "article_no": "第100条",
+          "item_no": null,
+          "paragraph_no": null
+        },
+        "code": "article_number_error",
+        "historical_version": null,
+        "resolved_locator": {
+          "article_no": "第105条",
+          "item_no": null,
+          "paragraph_no": null
+        },
+        "revision": null,
+        "risk_level": "HIGH",
+        "suggestion": "条号引用错误，应为《示例法》第105条。",
+        "summary": "引文内容对应第105条"
+      }
+    ],
+    "jurisdiction": "CN",
+    "law_identity_resolved": true,
+    "law_identity_resolver": "direct",
+    "law_title": "示例法",
+    "location_resolution": {
+      "candidates": [
+        {
+          "confirmed_level": "article",
+          "coverage": 1.0,
+          "evidence_spans": [
+            [
+              0,
+              27
+            ]
+          ],
+          "locator": {
+            "article_no": "第105条",
+            "item_no": null,
+            "paragraph_no": null
+          },
+          "source_url": "https://example.test/law",
+          "supported": true,
+          "text": "非法人组织可以确定一人或者数人代表该组织从事民事活动。"
+        }
+      ],
+      "source_trace": null,
+      "status": "resolved"
+    },
+    "lookup_status": "article_found",
+    "message": "",
+    "note_context": null,
+    "outcome": "issue",
+    "parent_check_id": null,
+    "recognition_form": "explicit",
+    "reference_role": "direct",
+    "relation_message": "",
+    "relation_status": null,
+    "source_attempts": [
+      {
+        "fetched_at": "<timestamp>",
+        "message": "",
+        "metadata": {
+          "full_text_complete": false,
+          "local_article_count": 2,
+          "version_confirmed": true,
+          "version_key": "2024-01-01"
+        },
+        "source_name": "CCiteheck 本地 SQLite 法规库",
+        "source_url": "https://example.test/law",
+        "status": "article_found",
+        "tier": "local_sqlite"
+      }
+    ],
+    "source_locations": []
+  }
+]

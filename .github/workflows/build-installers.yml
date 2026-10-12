@@ -1,0 +1,122 @@
+name: build-installers
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/package/**"
+      - ".github/workflows/build-installers.yml"
+      - "pyproject.toml"
+      - "requirements.txt"
+
+env:
+  PYTHONUTF8: "1"
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            platform: mac-arm64
+          - os: windows-latest
+            platform: win-x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Build installer bundle
+        run: python tools/package/build.py --platform ${{ matrix.platform }}
+
+      - name: Smoke test (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          set -euo pipefail
+          P=$(echo dist/staging/CCiteheck-*/payload)
+          "$P/bin/run-doctor.sh" || true
+          PYTHONPATH="$P/src:$P:$P/runtime/site-packages" \
+            "$P/runtime/python/bin/python3" -m apps.api.server --port 3100 &
+          API=$!
+          MCP_TRANSPORT_TYPE=http MCP_HTTP_PORT=3010 MCP_HTTP_HOST=127.0.0.1 \
+            "$P/runtime/node/bin/node" \
+            "$P/vendor/eurlex/node_modules/@cyanheads/eur-lex-mcp-server/dist/index.js" &
+          EU=$!
+          ok=""
+          for i in $(seq 1 20); do
+            sleep 1
+            [ "$(curl -s -o /dev/null -w "%{http_code}" -m 2 http://127.0.0.1:3100/api/health)" = "200" ] && ok=1 && break
+          done
+          [ -n "$ok" ] || { echo "API smoke failed"; exit 1; }
+          ok=""
+          for i in $(seq 1 20); do
+            sleep 1
+            code=$(curl -s -o /dev/null -w "%{http_code}" -m 2 -X POST http://127.0.0.1:3010/mcp \
+              -H "Content-Type: application/json" -H "Accept: application/json, text/event-stream" \
+              -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"ci","version":"1"}}}')
+            [ "$code" = "200" ] && ok=1 && break
+          done
+          [ -n "$ok" ] || { echo "EUR-Lex smoke failed"; exit 1; }
+          kill $API $EU
+
+      - name: Smoke test (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $P = (Get-ChildItem dist/staging -Directory | Select-Object -First 1).FullName + "\payload"
+          & "$P\bin\run-doctor.cmd"
+          if ($LASTEXITCODE -ne 0) { Write-Host "doctor 报缺密钥属无密钥包预期，忽略" }
+          $global:LASTEXITCODE = 0
+          $env:PYTHONPATH = "$P\src;$P;$P\runtime\site-packages"
+          $api = Start-Process -FilePath "$P\runtime\python\python.exe" `
+            -ArgumentList "-m", "apps.api.server", "--port", "3100" -PassThru -NoNewWindow
+          $env:MCP_TRANSPORT_TYPE = "http"; $env:MCP_HTTP_PORT = "3010"; $env:MCP_HTTP_HOST = "127.0.0.1"
+          $eu = Start-Process -FilePath "$P\runtime\node\node.exe" `
+            -ArgumentList "$P\vendor\eurlex\node_modules\@cyanheads\eur-lex-mcp-server\dist\index.js" `
+            -PassThru -NoNewWindow
+          $ok = $false
+          foreach ($i in 1..20) {
+            Start-Sleep 1
+            try { if ((Invoke-RestMethod "http://127.0.0.1:3100/api/health" -TimeoutSec 2).status -eq "ok") { $ok = $true; break } } catch {}
+          }
+          if (-not $ok) { throw "API smoke failed" }
+          $ok = $false
+          $body = '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"ci","version":"1"}}}'
+          foreach ($i in 1..20) {
+            Start-Sleep 1
+            try {
+              Invoke-WebRequest -Uri "http://127.0.0.1:3010/mcp" -Method Post -Body $body `
+                -ContentType "application/json" -Headers @{Accept = "application/json, text/event-stream"} `
+                -TimeoutSec 2 -UseBasicParsing | Out-Null
+              $ok = $true; break
+            } catch {}
+          }
+          if (-not $ok) { throw "EUR-Lex smoke failed" }
+          Stop-Process -Id $api.Id, $eu.Id -Force
+          exit 0
+
+      - name: Assert no secrets in bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          for z in dist/*.zip; do
+            if unzip -l "$z" | grep -E "/\.env$"; then
+              echo "FATAL: $z 内含 .env"; exit 1
+            fi
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CCiteheck-${{ matrix.platform }}
+          path: dist/*.zip
+          retention-days: 30
